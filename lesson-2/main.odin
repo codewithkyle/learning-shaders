@@ -32,6 +32,7 @@ main :: proc() {
 	model_view_loc := rl.GetShaderLocation(shader, "modelViewMatrix")
 
 	diffuse_loc := rl.GetShaderLocation(shader, "diffuse")
+	overlay_loc := rl.GetShaderLocation(shader, "overlay")
 	tint_loc := rl.GetShaderLocation(shader, "tint")
 
 	// Raylib's draw rect uses a single solid color so we create
@@ -42,6 +43,9 @@ main :: proc() {
 
 	dog_texture := rl.LoadTexture("dog.jpg")
 	defer rl.UnloadTexture(dog_texture)
+
+	overlay_texture := rl.LoadTexture("overlay.png")
+	defer rl.UnloadTexture(overlay_texture)
 
 	tint_color := [4]f32{1.0,0.0,0.0,1.0}
 
@@ -72,6 +76,12 @@ main :: proc() {
 			shader,
 			diffuse_loc,
 			dog_texture,
+		)
+
+		rl.SetShaderValueTexture(
+			shader,
+			overlay_loc,
+			overlay_texture,
 		)
 
 		// this is just a blank texture used to provide vertex data
