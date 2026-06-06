@@ -43,6 +43,7 @@ main :: proc() {
 
 	dog_texture := rl.LoadTexture("dog.jpg")
 	rl.SetTextureWrap(dog_texture, rl.TextureWrap.MIRROR_REPEAT)
+	rl.SetTextureFilter(dog_texture, rl.TextureFilter.TRILINEAR)
 	defer rl.UnloadTexture(dog_texture)
 
 	overlay_texture := rl.LoadTexture("overlay.png")
